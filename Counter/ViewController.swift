@@ -1,13 +1,6 @@
-//
-//  ViewController.swift
-//  Counter
-//
-//  Created by Никита Полойников on 15.02.2025.
-//
-
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     private var counter: Int = 0
     @IBOutlet weak var plusOneButton: UIButton!
     @IBOutlet weak var counterTextView: UILabel!
@@ -15,11 +8,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var historyTextView: UITextView!
     
-    var currentDate:String = ""
+    private var currentDate: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         currentDate = getDate()
-        // Do any additional setup after loading the view.
         updateTextView()
         historyTextView.text = "История изменений"
     }
@@ -35,7 +27,7 @@ class ViewController: UIViewController {
             counter -= 1
             updateTextView()
             updateHistory(text: " значение изменено на -1")
-        }else{
+        } else {
             updateHistory(text: " попытка уменьшить значение счетчика ниже 0")
         }
     }
@@ -50,13 +42,13 @@ class ViewController: UIViewController {
         counterTextView.text = String(counter)
     }
     
-    private func updateHistory(text: String){
+    private func updateHistory(text: String) {
         historyTextView.text += "\n\(currentDate)\(text)"
         let range = NSMakeRange(historyTextView.text.count - 1, 0)
         historyTextView.scrollRangeToVisible(range)
     }
     
-    private func getDate()->String{
+    private func getDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         let currentDate = Date()
